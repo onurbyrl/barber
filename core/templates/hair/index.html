@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=">
+  <title>Kenan Efe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body> 
+  <nav>
+    <div class="logo-flex-wrapper">
+      <h1 class="logo"><img src="{% static 'images/by_efe2.jpg' %}"></h1>
+    </div>
+    <div class="hair">
+      <div id="firstLine" class="line"></div>
+      <div id="secondLine" class="line"></div>
+      <div id="thirdLine" class="line"></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#About">About</a></li>
+      <li><a href="#ourTeam">Team</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+  </nav>
+
+  
+  
+  <div class="sections">
+      <section id="home" class="top-section">
+        <img class="top-section_img" src="{% static 'images/whatsapp.jpeg' %}">
+       
+      </section>
+    
+<!--  ================================================== -->
+    
+    <section  class="info-section">
+      
+      <div id="About" class="info-text">
+        {% for ab in about %}
+        <div class="article-flex-cover">
+          <h3 class="title">{{ ab.title }}</h3>
+        <div class="separator"></div>
+        <div class="text-wrapper">
+                  <h4 class="about">{{ ab.about_us }}</h4>
+        </div>
+          <div class="separator_big"></div>
+        </div>
+        {% endfor %}
+      </div>
+        <div class="visual-menu">
+        <div class="option"><img class="option_img" src="{% static 'images/WP3.jpeg' %}"  alt="Team"> <div class="cover"><p>team</p></div></div>
+        <div class="option"><img class="option_img" src="{% static 'images/WP4.jpeg' %}" alt="Gallery"><div class="cover"><p>Services</p></div></div>
+        <div class="option"><img class="option_img"src="{% static 'images/WP5.jpeg' %}" alt="Location"><div class="cover"><p>location</p></div></div>
+        <div class="option"><img class="option_img"src="{% static 'images/WP6.jpeg' %}"  alt="Prices"><div class="cover"><p>Prices</p></div></div>
+      </div>
+      </section>
+      
+<!--    ============================  -->
+    
+    
+ <section id="ourPlace" class="info-section-ourPlace">
+      
+  <div style="margin-top: 20px;">
+
+    <figure class="wave m-5">
+      <img src="{% static 'images/wp2.jpeg' %}" alt="rajni"></img>
+      <figcaption>Rajinikanth</figcaption>
+    </figure>
+  
+    <figure class="wave m-5">
+      <img src="{% static 'images/swp3.jpeg' %}" alt="chuck"></img>
+      <figcaption>Chuck Norris</figcaption>
+    </figure>
+  
+    <figure class="wave m-5">
+      <img src="{% static 'images/swp2.jpeg' %}" alt="chan"></img>
+      <figcaption>Jackie Chan</figcaption>
+    </figure>
+  
+    <figure class="wave m-5">
+      <img src="{% static 'images/swp1.jpeg' %}" alt="bean"></img>
+      <figcaption>Mr. Bean</figcaption>
+    </figure>
+  
+  </div>
+         
+
+        </section> 
+    
+    
+    
+    
+      <section id="ourTeam" class="our-team-section">
+        <div class="section-title">
+           <h3 class="our-team-title">Our Team</h3> 
+          <div class="separator"></div>
+        </div>
+        <div class="person">
+          <img src="https://images.nexusapp.co/assets/a7/d0/d1/22016025.jpg" alt="person-photo" class="person-photo">
+          <div class="about-person">
+            <h4 class="name">Kenan Efe</h4>
+            <div class="separator_small"></div>
+            <p class="about-person-text">AAAAAA</p>   
+          </div>
+        </div>
+            <div class="person">
+          <img src="https://images.nexusapp.co/assets/a7/d0/d1/22016025.jpg" alt="person-photo" class="person-photo">
+          <div class="about-person">
+            <h4 class="name">Kenan Efe</h4>
+            <div class="separator_small"></div>
+            <p class="about-person-text">AAAAAAAA</p>   
+          </div>
+        </div>
+                <div class="person">
+          <img src="https://images.nexusapp.co/assets/a7/d0/d1/22016025.jpg" alt="person-photo" class="person-photo">
+          <div class="about-person">
+            <h4 class="name"> Kenan Efe</h4>
+            <div class="separator_small"></div>
+            <p class="about-person-text">AAAAAA</p>   
+          </div>
+        </div>
+                <div class="person">
+          <img src="https://images.nexusapp.co/assets/a7/d0/d1/22016025.jpg" alt="person-photo" class="person-photo">
+          <div class="about-person">
+            <h4 class="name">Kenan Efe</h4>
+            <div class="separator_small"></div>
+            <p class="about-person-text">AAAAA</p>   
+          </div>
+        </div>
+      </section>
+    
+    
+    
+    
+<!--  ======================== GALLERY ======================== -->
+
+    <section id="gallery" class="section-gallery">
+      <div class="section-title">
+        <h3 class="title">Gallery</h3>
+          <div class="separator"></div>
+        </div>
+     <div class="gallery-container">
+       {% for photo in gallery %}
+       <div class="gallery_img_block">
+         <img class="gallery_img" src="{{ photo.image.url }}">
+       </div>
+        {% endfor %}
+     </div>
+      <div class="popUp hide">
+
+      </div>
+      <button class="see-more-btn"><a href="#" class="see-more">MORE</a></button>
+      <div class="separator_big"></div>
+    </section>
+
+<!-- ======================== PRICES AND SERVICES ==================     -->
+    
+    <section class="services">
+        <h3 class="title"> Services & Prices</h3>
+      <div class="separator"></div>
+      <div class="service-wrapper">
+        <div class="prices-container">
+          
+          <div class="col-3-img">
+            <h5 class="name-icon">Kenan Efe</h5>
+            <img src="https://image.flaticon.com/icons/svg/1995/1995584.svg" alt="" class="barber-icon" width="60%">
+            <h5 class="barber-shop">Barber shop</h5>
+          </div>
+          
+          <div class="text-col-wrapper">
+            <div class="col-3">
+              {% for service in services %}
+              <div class="service-line">
+                  <h4 class="service-name">
+                    {{ service.service }}
+                  </h4>
+                  <p class="price">{{ service.price }}</p>
+              </div>
+              {% endfor %}
+            </div>
+          
+          <!-- bu columndaki veri backendten gelmiyor -->
+          <div class="col-3">
+            <div class="service-line">
+                 <h4 class="service-name">
+                  Hot Towel Head Shave
+               </h4>
+               <p class="price">£ 15.00</p>
+            </div>  
+          </div>
+          
+          
+          <div class="services-note">
+            <!-- burdaki yazıyı admin girerse <br> etiketini kullanamayız -->
+            <h6 class="note">GIFT VOUCHERS AVAILIBLE <br> BOOKINGS AVAILABLE</h6>
+          </div>
+                  <p class="services-small-note">Shaves & Hair cuts on Friday, Saturday and Bank Holidays are £15</p>
+        </div>
+      </div>
+    </section>
+<!--     ================================ -->
+    
+    <footer id="footer" class="footer">
+      <div class="footer-container">
+        
+        <div class="contact-details">
+          
+          <div class="opening-times footer-col-3">
+            <h4 class="footer-titles">Opening Hours</h4>
+          {% for hour in hours %}
+          <div class="footer-line">
+            <p class="line-left-side">{{ hour.hours }}</span></p>
+          </div>
+          {% endfor %}
+            <div class="separator"></div>
+        </div>
+          
+           <div class="contacts footer-col-3">
+            <h4 class="footer-titles">Contact</h4> 
+          {% for cont in contacts %}
+          <div class="footer-line">
+            <p class="line-left-side">Phone: <span class="line-right-side">{{ cont.phone }}</span></p>
+          </div>
+          <div class="footer-line">
+            <p class="line-left-side">E-mail: <span class="line-right-side">{{ cont.email }}</span></p>
+          </div>
+          {% endfor %}
+             <div class="separator"></div>
+        </div>
+          <div class="address footer-col-3">
+            <h4 class="footer-titles"> Our Address</h4> 
+          {% for address in addresses %}
+          <div class="footer-line">
+            <p class="address">{{ address.location }}</p>
+          </div>
+          {% endfor %}
+                <div class="separator"></div>
+        </div>
+          
+        </div>
+        
+        
+        <div class="map col-2">
+          <iframe width="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d155.7757244352012!2d0.7341379827410406!3d51.3403417084666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47df2ab40a06bf31%3A0x30a151c8873da40e!2s112%20High%20St%2C%20Sittingbourne%20ME10%204PL!5e0!3m2!1sen!2suk!4v1598926657558!5m2!1sen!2suk" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+        <div class="footer-bottom"> 2022 Kenan Efe <br>
+Website developed by M.O.C.H  <a href="#" class="policy">Privacy Policy</a></div>
+      </div>
+    </footer>
+    
+    
+    
+  </div>
+   <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
+  
+<!--   https://www.tintleeds.com/ -->
