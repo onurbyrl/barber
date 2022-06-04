@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body> 
-  <nav>
+  <nav class="navbar">
     <div class="logo-flex-wrapper">
       <h1 class="logo"><img src="{% static 'images/by_efe2.jpg' %}"></h1>
     </div>
@@ -20,7 +20,7 @@
     </div>
     <ul class="nav-links">
       <li><a href="#About">About</a></li>
-      <li><a href="#ourTeam">Team</a></li>
+      <li><a href="#work">Team</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#footer">Contact</a></li>
     </ul>
@@ -50,11 +50,10 @@
         </div>
         {% endfor %}
       </div>
-        <div class="visual-menu">
-        <div class="option"><img class="option_img" src="{% static 'images/WP3.jpeg' %}"  alt="Team"> <div class="cover"><p>team</p></div></div>
-        <div class="option"><img class="option_img" src="{% static 'images/WP4.jpeg' %}" alt="Gallery"><div class="cover"><p>Services</p></div></div>
-        <div class="option"><img class="option_img"src="{% static 'images/WP5.jpeg' %}" alt="Location"><div class="cover"><p>location</p></div></div>
-        <div class="option"><img class="option_img"src="{% static 'images/WP6.jpeg' %}"  alt="Prices"><div class="cover"><p>Prices</p></div></div>
+      <div class="visual-menu">
+        {% for image in about_images %}
+        <div class="option"><img class="option_img" src="{{ image.image.url }}"  alt="image"> <div class="cover"></div></div>
+        {% endfor %}
       </div>
       </section>
       
@@ -64,76 +63,35 @@
  <section id="ourPlace" class="info-section-ourPlace">
       
   <div style="margin-top: 20px;">
-
+    {% for picture in motion_pictures %}
     <figure class="wave m-5">
-      <img src="{% static 'images/wp2.jpeg' %}" alt="rajni"></img>
-      <figcaption>Rajinikanth</figcaption>
+      <img src="{{ picture.image.url }}" alt="motion-picture"></img>
     </figure>
-  
-    <figure class="wave m-5">
-      <img src="{% static 'images/swp3.jpeg' %}" alt="chuck"></img>
-      <figcaption>Chuck Norris</figcaption>
-    </figure>
-  
-    <figure class="wave m-5">
-      <img src="{% static 'images/swp2.jpeg' %}" alt="chan"></img>
-      <figcaption>Jackie Chan</figcaption>
-    </figure>
-  
-    <figure class="wave m-5">
-      <img src="{% static 'images/swp1.jpeg' %}" alt="bean"></img>
-      <figcaption>Mr. Bean</figcaption>
-    </figure>
-  
+    {% endfor %}
   </div>
          
 
-        </section> 
+  </section> 
     
-    
-    
-    
-      <section id="ourTeam" class="our-team-section">
+      <section id="work" class="our-team-section">
         <div class="section-title">
-           <h3 class="our-team-title">Our Team</h3> 
+           <h3 class="our-team-title">My Work</h3> 
           <div class="separator"></div>
         </div>
+        {% for video in videos %}
         <div class="person">
-          <img src="https://images.nexusapp.co/assets/a7/d0/d1/22016025.jpg" alt="person-photo" class="person-photo">
+          <!-- <img src="https://images.nexusapp.co/assets/a7/d0/d1/22016025.jpg" alt="person-photo" class="person-photo"> -->
+          <video width="50%" height="100%" controls>
+            <source src="{{ video.video.url }}" type="video/mp4">
+          </video>
           <div class="about-person">
-            <h4 class="name">Kenan Efe</h4>
+            <p class="name1">{{ video.description }}</p>
             <div class="separator_small"></div>
-            <p class="about-person-text">AAAAAA</p>   
+            <!-- <p class="about-person-text">AAAAAA</p> -->
           </div>
         </div>
-            <div class="person">
-          <img src="https://images.nexusapp.co/assets/a7/d0/d1/22016025.jpg" alt="person-photo" class="person-photo">
-          <div class="about-person">
-            <h4 class="name">Kenan Efe</h4>
-            <div class="separator_small"></div>
-            <p class="about-person-text">AAAAAAAA</p>   
-          </div>
-        </div>
-                <div class="person">
-          <img src="https://images.nexusapp.co/assets/a7/d0/d1/22016025.jpg" alt="person-photo" class="person-photo">
-          <div class="about-person">
-            <h4 class="name"> Kenan Efe</h4>
-            <div class="separator_small"></div>
-            <p class="about-person-text">AAAAAA</p>   
-          </div>
-        </div>
-                <div class="person">
-          <img src="https://images.nexusapp.co/assets/a7/d0/d1/22016025.jpg" alt="person-photo" class="person-photo">
-          <div class="about-person">
-            <h4 class="name">Kenan Efe</h4>
-            <div class="separator_small"></div>
-            <p class="about-person-text">AAAAA</p>   
-          </div>
-        </div>
+        {% endfor %}
       </section>
-    
-    
-    
     
 <!--  ======================== GALLERY ======================== -->
 
@@ -172,32 +130,36 @@
           
           <div class="text-col-wrapper">
             <div class="col-3">
-              {% for service in services %}
+              {% for service in services_left %}
               <div class="service-line">
                   <h4 class="service-name">
                     {{ service.service }}
                   </h4>
-                  <p class="price">{{ service.price }}</p>
+                  <p class="price">£ {{ service.price }}</p>
               </div>
               {% endfor %}
             </div>
-          
-          <!-- bu columndaki veri backendten gelmiyor -->
-          <div class="col-3">
-            <div class="service-line">
-                 <h4 class="service-name">
-                  Hot Towel Head Shave
-               </h4>
-               <p class="price">£ 15.00</p>
-            </div>  
+            
+            <div class="col-3">
+              {% for service in services_right %}
+              <div class="service-line">
+                   <h4 class="service-name">
+                    {{ service.service }}
+                 </h4>
+                 <p class="price">£ {{ service.price }}</p>
+              </div>
+              {% endfor %}
+            </div>
           </div>
           
           
           <div class="services-note">
-            <!-- burdaki yazıyı admin girerse <br> etiketini kullanamayız -->
-            <h6 class="note">GIFT VOUCHERS AVAILIBLE <br> BOOKINGS AVAILABLE</h6>
+            {% for text in services_texts %}
+            <h6 class="note">{{ text.first_text }}  <br> {{ text.second_text }}</h6>
+            
           </div>
-                  <p class="services-small-note">Shaves & Hair cuts on Friday, Saturday and Bank Holidays are £15</p>
+                  <p class="services-small-note">{{ text.gray_text }}</p>
+            {% endfor %}
         </div>
       </div>
     </section>
@@ -242,10 +204,6 @@
           
         </div>
         
-        
-        <div class="map col-2">
-          <iframe width="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d155.7757244352012!2d0.7341379827410406!3d51.3403417084666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47df2ab40a06bf31%3A0x30a151c8873da40e!2s112%20High%20St%2C%20Sittingbourne%20ME10%204PL!5e0!3m2!1sen!2suk!4v1598926657558!5m2!1sen!2suk" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-        </div>
         <div class="footer-bottom"> 2022 Kenan Efe <br>
 Website developed by M.O.C.H  <a href="#" class="policy">Privacy Policy</a></div>
       </div>
@@ -254,7 +212,7 @@ Website developed by M.O.C.H  <a href="#" class="policy">Privacy Policy</a></div
     
     
   </div>
-   <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
   

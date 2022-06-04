@@ -11,7 +11,7 @@ urlpatterns = [
 ]
 
 admin.site.site_title = 'Admin Paneli'
-admin.site.name = 'Adminnn'
+admin.site.name = 'Admin'
 admin.site.site_header = 'Admin Paneli'
 admin.site.index_title = 'Selamlar'
 admin.site.unregister(User)

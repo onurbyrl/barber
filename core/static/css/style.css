@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+html {
+  /* scroll-behavior: smooth; */
+}
+
 body {
   font-family: sans-serif;
   overscroll-behavior: none;
@@ -272,8 +276,8 @@ nav {
   align-items: center;
   background: #00000094;
 }
-.name {
-  font-size: 1.4rem;
+.name1 {
+  text-align: center;
 }
 
 .about-person-text {
