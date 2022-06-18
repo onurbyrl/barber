@@ -1,9 +1,10 @@
 from django.db import models
+from django.core.validators import MinLengthValidator
 
 
 class About(models.Model):
     title = models.CharField(max_length=100, verbose_name='Title', null=True, blank=True)
-    about_us = models.TextField(max_length=2000, verbose_name='About', null=True, blank=True)
+    about_us = models.TextField(max_length=2000, validators=[MinLengthValidator(100)], verbose_name='About', null=True, blank=True)
 
     class Meta:
         verbose_name = 'About'
@@ -25,9 +26,20 @@ class AboutImages(models.Model):
         return self.title
 
 
+class TopImage(models.Model):
+    title = models.CharField(max_length=99, verbose_name='title', default='Main Image at top of the website', null=True, blank=True)
+    image = models.ImageField(upload_to='main_image/')
+
+    class Meta:
+        verbose_name = 'Main Image'
+        verbose_name_plural = 'Main Image'
+
+    def __str__(self):
+        return self.title
+
+
 class Hours(models.Model):
-    hours = models.CharField(max_length=999, null=False, blank=False) # TimeField denenebilir
-    # günler verilip sadece saat bilgisi de alınabilir
+    hours = models.CharField(max_length=99, help_text='ex: Monday-Friday: 08.00-18.30', null=False, blank=False)
 
     class Meta:
         verbose_name = 'Working hour'
@@ -39,8 +51,7 @@ class Hours(models.Model):
 
 class Contact(models.Model):
     phone = models.CharField(max_length=99, help_text='phone', null=True, blank=True)
-    email = models.CharField(max_length=255, help_text='e-mail address', null=True, blank=True)
-    # social media ??
+    email = models.CharField(max_length=99, help_text='e-mail address', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Contact'
@@ -51,7 +62,7 @@ class Contact(models.Model):
 
 
 class Address(models.Model):
-    location = models.CharField(max_length=999, null=False, blank=False)
+    location = models.CharField(max_length=99, null=False, blank=False)
 
     class Meta:
         verbose_name = 'Address'
@@ -62,6 +73,7 @@ class Address(models.Model):
 
 
 class Gallery(models.Model):
+    title = models.CharField(max_length=99, null=True, blank=True)
     image = models.ImageField(upload_to='images/')
 
     class Meta:
@@ -99,7 +111,7 @@ class ServicesRight(models.Model):
 class ServicesText(models.Model):
     first_text = models.TextField(max_length=99, verbose_name='First Text', null=True, blank=True)
     second_text = models.TextField(max_length=99, verbose_name='Second Text', null=True, blank=True)
-    gray_text = models.TextField(max_length=99, verbose_name='Gray Text', null=True, blank=True)
+    gray_text = models.TextField(max_length=99, verbose_name='Gray Small Text', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Service Text'
@@ -123,7 +135,7 @@ class MotionPicture(models.Model):
 
 class Videos(models.Model):
     video = models.FileField(upload_to='videos/')
-    description = models.TextField(max_length=255, verbose_name='Video description', null=True, blank=True)
+    description = models.TextField(max_length=200, verbose_name='Video description', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Video'
@@ -131,3 +143,19 @@ class Videos(models.Model):
 
     def __str__(self):
         return 'Video'
+
+
+class Titles(models.Model):
+    videos_title = models.CharField(max_length=24, verbose_name='Title above videos', null=True, blank=True)
+    gallery_title = models.CharField(max_length=24, verbose_name='Title above gallery', null=True, blank=True)
+    services_title = models.CharField(max_length=24, verbose_name='Title above services', null=True, blank=True)
+    hours_title = models.CharField(max_length=24, verbose_name='Title for opening hours', null=True, blank=True)
+    contact_title = models.CharField(max_length=24, verbose_name='Title for contact', null=True, blank=True)
+    addresses_title = models.CharField(max_length=24, verbose_name='Title for adresses', null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Title'
+        verbose_name_plural = 'Titles'
+
+    def __str__(self):
+        return ''

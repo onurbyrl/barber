@@ -816,3 +816,29 @@ iframe:hover {
     transform: rotate(-10deg);
   }
 }
+
+.fa-facebook {  
+  background: #3B5998;  
+  color: white;
+  padding: 5px;
+  margin: 10px;
+}  
+
+.fa-twitter {  
+  background: #55ACEE;  
+  color: white;  
+}  
+
+.fa-instagram {  
+  background: #125688;  
+  color: white;  
+}
+
+/* hover çalışmıyor */
+.fa-instagram:hover {
+  opacity: 0.9;
+}
+
+.fa:hover {  
+  opacity: 0.9;  
+}

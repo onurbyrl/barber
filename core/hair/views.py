@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import About, AboutImages, Hours, Contact, Address, Gallery, ServicesLeft, ServicesRight, ServicesText, MotionPicture, Videos
+from .models import About, AboutImages, Titles, TopImage, Hours, Contact, Address, Gallery, ServicesLeft, ServicesRight, ServicesText, MotionPicture, Videos
 
 # Create your views here.
 
@@ -15,6 +15,8 @@ def index(request):
     services_texts = ServicesText.objects.all()
     motion_pictures = MotionPicture.objects.all()
     videos = Videos.objects.all()
+    top_image = TopImage.objects.all()
+    titles = Titles.objects.all()
 
     return render(request, 'hair/index.html', {
         'about': about,
@@ -27,5 +29,7 @@ def index(request):
         'services_right': services_right,
         'services_texts': services_texts,
         'motion_pictures': motion_pictures,
-        'videos': videos
+        'videos': videos,
+        'top_image': top_image,
+        'titles': titles
     })

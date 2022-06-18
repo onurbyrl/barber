@@ -5,13 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=">
   <title>Kenan Efe</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body> 
   <nav class="navbar">
     <div class="logo-flex-wrapper">
-      <h1 class="logo"><img src="{% static 'images/by_efe2.jpg' %}"></h1>
+      <h1 class="logo"><img src="{% static 'images/by_efe2.jpeg' %}"></h1>
     </div>
     <div class="hair">
       <div id="firstLine" class="line"></div>
@@ -30,8 +31,9 @@
   
   <div class="sections">
       <section id="home" class="top-section">
-        <img class="top-section_img" src="{% static 'images/whatsapp.jpeg' %}">
-       
+      {% for image in top_image %}
+        <img class="top-section_img" src="{{ image.image.url }}">
+      {% endfor %}
       </section>
     
 <!--  ================================================== -->
@@ -75,7 +77,9 @@
     
       <section id="work" class="our-team-section">
         <div class="section-title">
-           <h3 class="our-team-title">My Work</h3> 
+          {% for title in titles %}
+           <h3 class="our-team-title">{{ title.videos_title }}</h3>
+          {% endfor %}
           <div class="separator"></div>
         </div>
         {% for video in videos %}
@@ -97,7 +101,9 @@
 
     <section id="gallery" class="section-gallery">
       <div class="section-title">
-        <h3 class="title">Gallery</h3>
+        {% for title in titles %}
+        <h3 class="title">{{ title.gallery_title }}</h3>
+        {% endfor %}
           <div class="separator"></div>
         </div>
      <div class="gallery-container">
@@ -110,14 +116,15 @@
       <div class="popUp hide">
 
       </div>
-      <button class="see-more-btn"><a href="#" class="see-more">MORE</a></button>
-      <div class="separator_big"></div>
+
     </section>
 
 <!-- ======================== PRICES AND SERVICES ==================     -->
     
     <section class="services">
-        <h3 class="title"> Services & Prices</h3>
+      {% for title in titles %}
+        <h3 class="title">{{ title.services_title }}</h3>
+      {% endfor %}
       <div class="separator"></div>
       <div class="service-wrapper">
         <div class="prices-container">
@@ -171,7 +178,9 @@
         <div class="contact-details">
           
           <div class="opening-times footer-col-3">
-            <h4 class="footer-titles">Opening Hours</h4>
+          {% for title in titles %}
+            <h4 class="footer-titles">{{ title.hours_title }}</h4>
+          {% endfor %}
           {% for hour in hours %}
           <div class="footer-line">
             <p class="line-left-side">{{ hour.hours }}</span></p>
@@ -181,9 +190,17 @@
         </div>
           
            <div class="contacts footer-col-3">
-            <h4 class="footer-titles">Contact</h4> 
+          {% for title in titles %}
+            <h4 class="footer-titles">{{ title.contact_title }}</h4>
+          {% endfor %}
           {% for cont in contacts %}
           <div class="footer-line">
+            <p class="social-media-icons">
+              <a href="https://instagram.com/kenanefe__?igshid=YmMyMTA2M2Y=" target="_blank"><ion-icon size="large" name="logo-instagram"></ion-icon></a>
+              <a href="https://www.facebook.com/kenan.eefe" target="_blank"><ion-icon size="large" name="logo-facebook"></ion-icon></a>
+              <a href="https://vt.tiktok.com/ZSd73kYCW/" target="_blank"><ion-icon size="large" name="logo-tiktok"></ion-icon></a>
+            </p>
+            <br>
             <p class="line-left-side">Phone: <span class="line-right-side">{{ cont.phone }}</span></p>
           </div>
           <div class="footer-line">
@@ -193,7 +210,9 @@
              <div class="separator"></div>
         </div>
           <div class="address footer-col-3">
-            <h4 class="footer-titles"> Our Address</h4> 
+          {% for title in titles %}
+            <h4 class="footer-titles">{{ title.addresses_title }}</h4>
+          {% endfor %}
           {% for address in addresses %}
           <div class="footer-line">
             <p class="address">{{ address.location }}</p>
@@ -213,6 +232,8 @@ Website developed by M.O.C.H  <a href="#" class="policy">Privacy Policy</a></div
     
   </div>
   <script src="{% static 'js/main.js' %}"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
   
