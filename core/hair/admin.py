@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import About, AboutImages, Address, Contact, Gallery, Hours, MotionPicture, ServicesLeft, ServicesRight, ServicesText, Titles, TopImage, Videos
+from .models import About, AboutImages, Address, Appointment, Contact, Gallery, Hours, MotionPicture, ServicesLeft, ServicesRight, ServicesText, Titles, TopImage, Videos
 
 
 TEXT = 'Write the title'
@@ -141,3 +141,8 @@ class TitlesAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+
+@admin.register(Appointment)
+class AppointmentAdmin(admin.ModelAdmin):
+    list_display = ('full_name','phone', 'date_time')

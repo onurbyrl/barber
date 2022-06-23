@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from .models import About, AboutImages, Titles, TopImage, Hours, Contact, Address, Gallery, ServicesLeft, ServicesRight, ServicesText, MotionPicture, Videos
+from django.http import HttpResponse
+from .models import About, AboutImages, Titles, TopImage, Hours, Contact, Address, Gallery, ServicesLeft, ServicesRight, ServicesText, MotionPicture, Videos, Appointment
+from django.contrib import messages
 
 # Create your views here.
 
@@ -17,6 +19,7 @@ def index(request):
     videos = Videos.objects.all()
     top_image = TopImage.objects.all()
     titles = Titles.objects.all()
+    
 
     return render(request, 'hair/index.html', {
         'about': about,
@@ -33,3 +36,20 @@ def index(request):
         'top_image': top_image,
         'titles': titles
     })
+
+
+def appointment(request):
+
+    if request.method == 'POST':
+        full_name = request.POST['full_name']
+        phone = request.POST['phone']
+        date_time = request.POST['date_time']
+        
+        Appointment.objects.create(full_name=full_name, phone=phone, date_time=date_time)
+
+        messages.success(request, 'There is a new appointment!')
+
+        return HttpResponse("Your appointment has succesfully created!")
+
+
+    return render(request, 'hair/appointment.html', {})

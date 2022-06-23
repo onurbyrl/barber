@@ -5,4 +5,5 @@ app_name = 'hair'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('appointment/', views.appointment, name='appointment'),
 ]
